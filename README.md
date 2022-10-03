@@ -5,7 +5,7 @@ Command line utility to create a mqtt sensor in Home Assistant using mqtt discov
 
 # How to install
 
-1. Clone this repository to a convinient place `https://github.com/dummylabs/mqtt-sensor`
+1. Clone this repository to a convinient place `git clone https://github.com/dummylabs/mqtt-sensor`
 2. Create a folder in the home directory of a user which will run this script
    `mkdir -p ~/.cfg/mqtt_conf`
 3. Create the configuration file with the path to mosquitto_pub utility, ip address of mqtt server and user credentials:
