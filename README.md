@@ -1,6 +1,8 @@
 # mqtt-sensor
 Command line utility to create a mqtt sensor in Home Assistant using mqtt discovery. No additional configuration in Home Assistant is required.
 
+<img width="489" alt="image" src="https://user-images.githubusercontent.com/4209521/193655097-ebb4f36e-ab3a-4354-86c0-f418c1c28eb2.png">
+
 # How to install
 
 1. Clone this repository to a convinient place `https://github.com/dummylabs/mqtt-sensor`
