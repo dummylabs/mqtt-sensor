@@ -1,5 +1,5 @@
 # mqtt-sensor
-Command line utility to create a mqtt sensor in Home Assistant using mqtt discovery. No additional configuration in Home Assistant is required.
+A simple bash script to create a mqtt sensor in Home Assistant using mqtt discovery. No additional configuration in Home Assistant is required.
 
 <img width="489" alt="image" src="https://user-images.githubusercontent.com/4209521/193655097-ebb4f36e-ab3a-4354-86c0-f418c1c28eb2.png">
 
@@ -17,7 +17,7 @@ Command line utility to create a mqtt sensor in Home Assistant using mqtt discov
 ```
  sh ./mqtt_sensor.sh -n "last_backup_result" -s "SUCCESS"`
 ```
- This command will create a sensor with name `last_backup_result` in home assistant using MQTT discovery 
+ This command will create a sensor named `last_backup_result` in Home Assistant. 
 
 2. Create a timestamp sensor which contains the last backup date:
 ```sh
