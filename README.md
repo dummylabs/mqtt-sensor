@@ -1,21 +1,34 @@
 # mqtt-sensor
-A simple bash script to create a mqtt sensor in Home Assistant using mqtt discovery. No additional configuration in Home Assistant is required.
+A simple bash script to create a mqtt sensor in Home Assistant using mqtt discovery. No additional sensor configuration in Home Assistant is required.
 
 <img width="489" alt="image" src="https://user-images.githubusercontent.com/4209521/193655097-ebb4f36e-ab3a-4354-86c0-f418c1c28eb2.png">
 
 # How to install
 
-1. Clone this repository to a convinient place `git clone https://github.com/dummylabs/mqtt-sensor`
-2. Create a folder in the home directory of a user which will run this script
+1. Make sure [MQTT discovery](https://www.home-assistant.io/docs/mqtt/discovery/) in Home Assistant is enabled.
+2. Clone this repository to a convinient place `git clone https://github.com/dummylabs/mqtt-sensor`
+3. Install mosquitto_pub and mosquitto_sub clients:
+   `sudo apt-get install mosquitto-clients`
+4. Create a folder in the home directory of a user which will run this script
    `mkdir -p ~/.config/mqtt_conf`
-3. Create the configuration file with the path to mosquitto_pub utility, ip address of mqtt server and user credentials:
+5. Create the configuration file with the path to mosquitto_pub utility, ip address of mqtt server and user credentials:
    `echo "/usr/bin/mosquitto_pub -h 192.168.1.15 -u my_user -P my_password" > ~/.config/mqtt_conf/mqtt.conf `
+
 
 # Usage examples:
 
 1. Create a text sensor which contains the result of last backup operation
-```
- sh ./mqtt_sensor.sh -n "last_backup_result" -s "SUCCESS"`
+```sh
+result=$( { rsync -rltgoP /mnt/tank/share backup@192.168.1.68:/i-data/sysvol/backup; } 2>&1)
+
+if [ $? -eq 0 ]; then
+    status=OK
+    backup_message=OK
+else
+    status=FAIL
+    backup_message=$result
+fi
+sh ./mqtt_sensor.sh -n "last_backup_result" -s "$status"`
 ```
  This command will create a sensor named `last_backup_result` in Home Assistant. 
 
