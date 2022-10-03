@@ -1,5 +1,5 @@
 # mqtt-sensor
-Command line utility to create a mqtt sensor in Home Assistant
+Command line utility to create a mqtt sensor in Home Assistant using mqtt discovery. No additional configuration in Home Assistant is required.
 
 # How to install
 
