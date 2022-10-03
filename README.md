@@ -43,16 +43,16 @@ sh ./mqtt_sensor.sh -n "last_backup_date" -s "$ts" -d "timestamp"
 
 # Supported options
 
--c <component>: OPTIONAL component name, e.g. binary_sensor. Default value is "sensor" 
--n <sensor_name> : MANDATORY sensor name in home assistant, e.g. last_backup_status
--t <state_topic> : OPTIONAL mqtt topic to keep sensor state. Created automatically if not specified as `mqtt-sensor/$sensor_name/state`
--s <state> : MANDATORY sensor state
--d <device_class> : OPTIONAL a Home Assistant device class, e.g. timestamp, temperature or motion
--u <unit_of_measurement> : OPTIONAL unit of measurement for the sensor, e.g. seconds
--k : Do not publish discovery topic. By default every time the sensor updates, mqtt discovery topic is also updated. This can be altered with -k option. If specified, only sensor state will be published 
--v : Verbose output for testing purposes
+`-c <component_name>` : OPTIONAL component name, e.g. binary_sensor. Default value is "sensor" <br>
+`-n <sensor_name>` : MANDATORY sensor name in home assistant, e.g. last_backup_status <br>
+`-t <state_topic>` : OPTIONAL mqtt topic to keep sensor state. Created automatically if not specified as `mqtt-sensor/$sensor_name/state` <br>
+`-s <state>` : MANDATORY sensor state <br>
+`-d <device_class>` : OPTIONAL a Home Assistant device class, e.g. timestamp, temperature or motion <br>
+`-u <unit_of_measurement>` : OPTIONAL unit of measurement for the sensor, e.g. seconds <br>
+`-k` : Do not publish discovery topic. Discovery topic has to be published once when HA should discover a new sensor. By default this topic is updated every time the sensor state is updated. When `-k` option is set, only sensor state is published. <br>
+`-v` : Verbose output for testing purposes <br>
 
 
 # FAQ
-1. Q: Discovery topic is not updated in Home Assistant. I've tried to add unit of measurement to existing sensor, but it was not updated in HA
+1. Q: Discovery topic is not updated in Home Assistant. I've tried to add unit of measurement to an existing sensor, but it was not updated in HA
    A: Try to remove discovery topic in a MQTT client (MQTT Explorer is a good choice) and run command again 
