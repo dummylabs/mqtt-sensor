@@ -4,7 +4,7 @@
 # -v verbose output
 
 MQTT_CONF_TOPIC="homeassistant"
-MQTT_STATE_TOPIC="bash"
+MQTT_STATE_TOPIC="mqtt-sensor"
 MQTT_CMD="`cat ${XDG_CONF_HOME:-$HOME/.config}/mqtt_conf/mqtt.conf`"
 
 if [ -z "$MQTT_CMD" ]; then

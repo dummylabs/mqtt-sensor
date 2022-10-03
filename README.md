@@ -45,7 +45,7 @@ sh ./mqtt_sensor.sh -n "last_backup_date" -s "$ts" -d "timestamp"
 
 -c <component>: OPTIONAL component name, e.g. binary_sensor. Default value is "sensor" 
 -n <sensor_name> : MANDATORY sensor name in home assistant, e.g. last_backup_status
--t <state_topic> : OPTIONAL mqtt topic to keep sensor state. Created automatically if not specified as `bash/$sensor_name/state`
+-t <state_topic> : OPTIONAL mqtt topic to keep sensor state. Created automatically if not specified as `mqtt-sensor/$sensor_name/state`
 -s <state> : MANDATORY sensor state
 -d <device_class> : OPTIONAL a Home Assistant device class, e.g. timestamp, temperature or motion
 -u <unit_of_measurement> : OPTIONAL unit of measurement for the sensor, e.g. seconds
