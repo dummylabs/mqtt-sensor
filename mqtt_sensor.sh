@@ -1,7 +1,6 @@
 #!/bin/bash
-# -c <component> -n <sensor_name> -t <state_topic> -s <state> -d <device_class> -u <unit_of_measurement>
-# -k do not publish discovery topic
-# -v verbose output
+
+# (c) 2022 dummylabs: https://github.com/dummylabs/mqtt-sensor
 
 MQTT_CONF_TOPIC="homeassistant"
 MQTT_STATE_TOPIC="mqtt-sensor"
