@@ -12,7 +12,7 @@ if [ -z "$MQTT_CMD" ]; then
   exit 3
 fi
 
-while getopts kvd:n:s:c:t:l:u: option; do
+while getopts kvd:n:s:c:t:l:u:i: option; do
  case "${option}" in
  n) NAME=${OPTARG};;
  t) STATE_TOPIC=${OPTARG};;
@@ -20,6 +20,7 @@ while getopts kvd:n:s:c:t:l:u: option; do
  s) STATE=${OPTARG};;
  d) DEVICE_CLASS=",\"device_class\":\"${OPTARG}\"";;
  u) UNIT_OF_MEASUREMENT=",\"unit_of_measurement\":\"${OPTARG}\"";;
+ i) UNIQUE_ID=",\"unique_id\":\"${OPTARG}\"";;
  k) NODISCOVERY=1;;
  v) VERBOSE=1;;
  \?) exit 2;;
@@ -37,8 +38,9 @@ if [ -z "$STATE" ]; then
 fi
 
 if [ -z ${STATE_TOPIC} ]; then STATE_TOPIC="$MQTT_STATE_TOPIC/$NAME/state"; fi
+if [ -z ${UNIQUE_ID} ]; then UNIQUE_ID=",\"unique_id\":\"${MQTT_STATE_TOPIC}-${NAME}\""; fi
 
-JSON_CONF="{\"name\":\"$NAME\",\"state_topic\":\"$STATE_TOPIC\"$DEVICE_CLASS$UNIT_OF_MEASUREMENT}";
+JSON_CONF="{\"name\":\"$NAME\",\"state_topic\":\"$STATE_TOPIC\"$UNIQUE_ID$DEVICE_CLASS$UNIT_OF_MEASUREMENT}";
 
 if [ -z ${COMPONENT} ]; then COMPONENT="sensor"; fi
 
