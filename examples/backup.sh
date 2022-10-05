@@ -1,6 +1,6 @@
 #!/bin/bash
-# example script to backup klipper configuration to a remote server using rsync
-# the status, error message and duration of the last backup are shown as MQTT sensors in Home Assistant
+# example script to backup klipper (https://klipper3d.org) configuration to a remote server using rsync command
+# the status, error message and duration of the last backup are exposed as MQTT sensors to Home Assistant
 
 NOW=$(date +"%Y-%d-%m")
 HOME=/home/klipper
