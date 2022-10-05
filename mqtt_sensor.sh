@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # (c) 2022 dummylabs: https://github.com/dummylabs/mqtt-sensor
 
 MQTT_CONF_TOPIC="homeassistant"
@@ -16,7 +15,7 @@ while getopts kvd:n:s:c:t:l:u:i: option; do
  n) NAME=${OPTARG};;
  t) STATE_TOPIC=${OPTARG};;
  c) COMPONENT=${OPTARG};;
- s) STATE=${OPTARG};;
+ s) STATE=${OPTARG}; STATE_SET=1;;
  d) DEVICE_CLASS=",\"device_class\":\"${OPTARG}\"";;
  u) UNIT_OF_MEASUREMENT=",\"unit_of_measurement\":\"${OPTARG}\"";;
  i) UNIQUE_ID=",\"unique_id\":\"${OPTARG}\"";;
@@ -31,7 +30,8 @@ if [ -z "$NAME" ]; then
     exit 5
 fi 
 
-if [ -z "$STATE" ]; then
+#STATE can be set as empty
+if [ -z "$STATE_SET" ]; then
     echo "Error: sensor state should be provided (-s)".
     exit 5
 fi
