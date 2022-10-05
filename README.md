@@ -53,7 +53,7 @@ sh ./mqtt_sensor.sh -n "last_backup_date" -s "$ts" -d "timestamp"
 `-n <sensor_name>` : MANDATORY sensor name in home assistant, e.g. `last_backup_status` <br>
 `-t <state_topic>` : OPTIONAL mqtt topic to keep sensor state. Created automatically if not specified as `mqtt-sensor/<sensor_name>/state` <br>
 `-s <state>` : MANDATORY sensor state <br>
-`-d <device_class>` : OPTIONAL a Home Assistant device class, e.g. `timestamp`, `temperature` or `motion` <br>
+`-d <device_class>` : OPTIONAL a sensor's [device class](https://developers.home-assistant.io/docs/core/entity/sensor/#available-device-classes), e.g. `timestamp`, `temperature` or `motion` <br>
 `-u <unit_of_measurement>` : OPTIONAL unit of measurement for the sensor, e.g. `seconds` <br>
 `-i <unique_id>` : OPTIONAL unique_id of the sensor. Created automatically if not specified as `mqtt-sensor-<sensor_name>` <br>
 `-k` : Do not publish discovery topic. Discovery topic has to be published once when HA should discover a new sensor. By default this topic is updated every time the sensor state is updated. When `-k` option is set, only sensor state is published. <br>
