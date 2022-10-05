@@ -49,7 +49,7 @@ sh ./mqtt_sensor.sh -n "last_backup_date" -s "$ts" -d "timestamp"
 
 # Supported options
 
-`-c <component_name>` : OPTIONAL component name, e.g. binary_sensor. Default value is `sensor` <br>
+`-c <component_name>` : OPTIONAL component name, e.g. `binary_sensor`. Default value is `sensor` <br>
 `-n <sensor_name>` : MANDATORY sensor name in home assistant, e.g. `last_backup_status` <br>
 `-t <state_topic>` : OPTIONAL mqtt topic to keep sensor state. Created automatically if not specified as `mqtt-sensor/<sensor_name>/state` <br>
 `-s <state>` : MANDATORY sensor state <br>
