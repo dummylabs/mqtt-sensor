@@ -1,5 +1,5 @@
 # mqtt-sensor
-A simple bash script to create a mqtt sensor in Home Assistant using mqtt discovery. No additional sensor configuration in Home Assistant is required.
+A simple bash script to create a mqtt sensor in Home Assistant using mqtt discovery. No manual sensor configuration in Home Assistant is required.
 
 <img width="489" alt="image" src="https://user-images.githubusercontent.com/4209521/193655097-ebb4f36e-ab3a-4354-86c0-f418c1c28eb2.png">
 
@@ -17,7 +17,12 @@ A simple bash script to create a mqtt sensor in Home Assistant using mqtt discov
 
 # Usage examples:
 
-1. Create a text sensor which contains the result of last backup operation
+1. Create a sensor named "foo" with the state "bar"
+```sh
+   sh ./mqtt_sensor.sh -n "foo" -s "bar"
+```
+
+2. Create two sensors which contain the result of last backup operation
 ```sh
 result=$( { rsync -rltgoP /mnt/tank/share backup@192.168.1.68:/i-data/sysvol/backup; } 2>&1)
 
@@ -28,11 +33,12 @@ else
     status=FAIL
     backup_message=$result
 fi
-sh ./mqtt_sensor.sh -n "last_backup_result" -s "$status"`
+sh ./mqtt_sensor.sh -n "last_backup_result" -s "$status"
+sh ./mqtt_sensor.sh -n "last_backup_message" -s "$backup_message"
 ```
  This command will create a sensor named `last_backup_result` in Home Assistant. 
 
-2. Create a timestamp sensor which contains the last backup date:
+3. Create a timestamp sensor which contains the last backup date:
 ```sh
 # use your timezone here
 ts=$(date +"%Y-%m-%dT%T+03:00")
