@@ -37,7 +37,7 @@ fi
 sh ./mqtt_sensor.sh -n "last_backup_result" -s "$status"
 sh ./mqtt_sensor.sh -n "last_backup_message" -s "$backup_message"
 ```
- This command will create a sensor named `last_backup_result` in Home Assistant. 
+ This command will create two sensors named `last_backup_result` and `las_backup_message` in Home Assistant. 
 
 3. Create a timestamp sensor which contains the last backup date:
 ```sh
