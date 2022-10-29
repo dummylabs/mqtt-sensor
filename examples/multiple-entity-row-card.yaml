@@ -1,0 +1,33 @@
+type: entities
+entities:
+  - type: custom:multiple-entity-row
+    name: Home Assistant
+    entity: sensor.hass_backup_status
+    styles:
+      width: 80px
+    secondary_info: last-changed
+    state_header: State
+    entities:
+      - entity: sensor.hass_backup_duration
+        name: Duration
+  - type: custom:multiple-entity-row
+    name: NAS 326
+    entity: sensor.nas326_backup_status
+    styles:
+      width: 80px
+    secondary_info: last-changed
+    state_header: State
+    entities:
+      - entity: sensor.nas326_backup_duration
+        name: Duration
+  - type: custom:multiple-entity-row
+    name: Klipper
+    entity: sensor.klipper_backup_status
+    styles:
+      width: 80px
+    secondary_info: last-changed
+    state_header: State
+    entities:
+      - entity: sensor.klipper_backup_duration
+        name: Duration
+title: Backup status
