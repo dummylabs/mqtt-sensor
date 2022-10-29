@@ -8,7 +8,8 @@ A simple bash script to create a mqtt sensor in Home Assistant using mqtt discov
 
 1. Make sure [MQTT discovery](https://www.home-assistant.io/docs/mqtt/discovery/) in Home Assistant is enabled.
 2. Download the script to a convinient place: `wget https://raw.githubusercontent.com/dummylabs/mqtt-sensor/main/mqtt_sensor.sh` or just clone the repo: `git clone https://github.com/dummylabs/mqtt-sensor`.
-3. Install mosquitto_pub and mosquitto_sub clients:
+3. Make it executable: `chmod +x mqtt_sensor.sh`
+4. Install mosquitto_pub and mosquitto_sub clients:
    `sudo apt-get install mosquitto-clients`
 4. Create configuration folder in the home directory of a user which will run this script:
    `mkdir -p ~/.config/mqtt_conf`
