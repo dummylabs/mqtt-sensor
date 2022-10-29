@@ -62,7 +62,7 @@ sh ./mqtt_sensor.sh -n "last_backup_date" -s "$ts" -d "timestamp"
 
 
 # FAQ
-1. Q: Discovery topic is not updated in Home Assistant. I've tried to add unit of measurement to an existing sensor, but it was not updated in HA <br>
-   A: Try to remove discovery topic in a MQTT client (MQTT Explorer is a good choice) and run command again 
-2. Q: How do I remove an existing sensor?<br>
-   A: Use a MQTT client (e.g., MQTT Explorer) to remove sensor's discovery topic, usually it is under `homeassistant/sensor` topic, but if you use different device class (e.g., switch) it is under `homeassistant/switch`. Then remove sensor value, the topic is located under `mqtt-sensor` topic.
+1. Q: How do I remove an existing sensor?<br>
+   A: Use a MQTT client (e.g., MQTT Explorer) to remove sensor's discovery topic, usually it is under `homeassistant/sensor` topic named after the sensor name, but if you use different device class (e.g., switch) it is under `homeassistant/switch`. Then remove sensor value, the topic is located under `mqtt-sensor` topic.
+2. Q: Discovery topic is not updated in Home Assistant. I've tried to add unit of measurement to an existing sensor, but it was not updated in HA <br>
+   A: Usually topic update runs smoothly. Try to remove discovery topic in a MQTT client and run command again 
