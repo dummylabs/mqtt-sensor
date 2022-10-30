@@ -12,7 +12,7 @@ A simple bash script to create a mqtt sensor in Home Assistant using mqtt discov
    `sudo apt-get install mosquitto-clients`
 4. Create configuration folder in the home directory of a user which will run this script:
    `mkdir -p ~/.config/mqtt_conf`
-5. Create the configuration file with the path to mosquitto_pub utility, ip address of mqtt server and user credentials:
+5. Create the configuration file with the path to `mosquitto_pub` client, ip address of mqtt server and user credentials:
    `echo "/usr/bin/mosquitto_pub -h 192.168.1.15 -u my_user -P my_password" > ~/.config/mqtt_conf/mqtt.conf `
 
 
