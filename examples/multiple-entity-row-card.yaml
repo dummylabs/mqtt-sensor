@@ -15,7 +15,10 @@ entities:
     entity: sensor.nas326_backup_status
     styles:
       width: 80px
-    secondary_info: last-changed
+    secondary_info:
+      entity: sensor.nas326_backup_last_success
+      name: 'Last success:'
+      format: relative
     state_header: State
     entities:
       - entity: sensor.nas326_backup_duration
@@ -25,7 +28,10 @@ entities:
     entity: sensor.klipper_backup_status
     styles:
       width: 80px
-    secondary_info: last-changed
+    secondary_info:
+      entity: sensor.klipper_backup_last_success
+      name: 'Last success:'
+      format: relative
     state_header: State
     entities:
       - entity: sensor.klipper_backup_duration
