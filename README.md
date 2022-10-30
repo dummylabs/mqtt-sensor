@@ -57,7 +57,7 @@ sh ./mqtt_sensor.sh -n "last_backup_date" -s "$ts" -d "timestamp"
 `-d <device_class>` : OPTIONAL a sensor's [device class](https://developers.home-assistant.io/docs/core/entity/sensor/#available-device-classes), e.g. `timestamp`, `temperature` or `motion` <br>
 `-u <unit_of_measurement>` : OPTIONAL unit of measurement for the sensor, e.g. `seconds` <br>
 `-i <unique_id>` : OPTIONAL unique_id of the sensor. Created automatically if not specified as `mqtt-sensor-<sensor_name>` <br>
-`-k` : Do not publish discovery topic. By default discovery topic is updated every time the sensor state is updated. When `-k` option is set, only sensor state is published. In theory, this can sligtly improve performance, but it's unlikely that you will notice the difference. Note that discovery topic should exist so that sensor works propely.<br>
+`-k` : Do not publish discovery topic. By default discovery topic is updated every time the sensor state is updated. When `-k` option is set, only sensor state is published. In theory, this can sligtly improve performance, but you'll unlikely notice the difference. Note that discovery topic should exist so that sensor works propely.<br>
 `-v` : Verbose output for testing purposes <br>
 
 
