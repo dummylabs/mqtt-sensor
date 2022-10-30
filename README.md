@@ -1,8 +1,7 @@
 # mqtt-sensor
 A simple bash script to create a mqtt sensor in Home Assistant using mqtt discovery, no manual sensor configuration is required. Below is an example of multiple-entity-row custom card showing some data from an example backup script (see examples folder):
 
-![telegram-cloud-photo-size-2-5397882462476026244-y](https://user-images.githubusercontent.com/4209521/198827225-35a48d03-a19f-4888-946e-69eb5d9ca850.jpg)
-
+<img width="492" alt="image" src="https://user-images.githubusercontent.com/4209521/198874418-6d5d0365-4d68-4822-827d-dc39c70fe64a.png">
 
 # Installation
 
