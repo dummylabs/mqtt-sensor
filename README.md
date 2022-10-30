@@ -25,14 +25,14 @@ A simple bash script to create a mqtt sensor in Home Assistant using mqtt discov
 
 2. Create two sensors which contain the result of last backup operation
 ```sh
-result=$( { rsync -rltgoP /mnt/tank/share backup@192.168.1.68:/i-data/sysvol/backup; } 2>&1)
+cmd_output=$( { rsync -rltgoP /mnt/tank/share backup@192.168.1.68:/i-data/sysvol/backup; } 2>&1)
 
 if [ $? -eq 0 ]; then
     status=OK
     backup_message=OK
 else
     status=FAIL
-    backup_message=$result
+    backup_message=$cmd_output
 fi
 sh ./mqtt_sensor.sh -n "last_backup_result" -s "$status"
 sh ./mqtt_sensor.sh -n "last_backup_message" -s "$backup_message"
