@@ -39,7 +39,7 @@ sh ./mqtt_sensor.sh -n last_backup_date -s $ts -d timestamp
 
 The discovery mechanism requires two MQTT topics to exist in your MQTT broker for each sensor:
 1. `config_topic` - this is a configuration of your sensor: the name, unit of measurement, where to get state (state_topic) and so on. `config_topic` location and payload should obey the conventions imposed by MQTT discovery feature. The payload of this topic is JSON object.
-2. `state_topic` - MQTT topic where HA should get the state of the sensor. This can be arbitrary path, by default all state topics created by mqtt-sensor are published under `mqtt-sensor/{sensor_name}` topic. This can be alrered with `-t` parameter.  
+2. `state_topic` - MQTT topic where HA should get the state of the sensor. This can be arbitrary path and content, by default all state topics created by mqtt-sensor are published under `mqtt-sensor/{sensor_name}` topic. This can be alrered with `-t` parameter.  
 
 The mqtt-sensor creates and publish both config_topic and state_topic every on each run using either command line parameters (simple mode), or json file (JSON mode). By default config_topic is updated every time the sensor state is updated. When `-k` option is set, only sensor state is published. In theory, this can sligtly improve performance, but you'll unlikely notice the difference. Note that config_topic should exist for every sensor in order to work propely in HA.
 
