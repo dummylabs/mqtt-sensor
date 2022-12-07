@@ -10,7 +10,7 @@ if [ -z "$MQTT_CMD" ]; then
   exit 3
 fi
 
-while getopts kvd:n:s:c:t:l:u:i: option; do
+while getopts kvd:n:s:c:t:l:u:i:a: option; do
  case "${option}" in
  n) NAME=${OPTARG};;
  t) STATE_TOPIC=${OPTARG};;
@@ -19,6 +19,7 @@ while getopts kvd:n:s:c:t:l:u:i: option; do
  d) DEVICE_CLASS=",\"device_class\":\"${OPTARG}\"";;
  u) UNIT_OF_MEASUREMENT=",\"unit_of_measurement\":\"${OPTARG}\"";;
  i) UNIQUE_ID=",\"unique_id\":\"${OPTARG}\"";;
+ a) STATE_CLASS=",\"state_class\":\"${OPTARG}\"";;
  k) NODISCOVERY=1;;
  v) VERBOSE=1;;
  \?) exit 2;;
@@ -36,13 +37,17 @@ if [ -z "$STATE_SET" ]; then
     exit 5
 fi
 
+# set default values for undefied options
 if [ -z ${STATE_TOPIC} ]; then STATE_TOPIC="$MQTT_STATE_TOPIC/$NAME/state"; fi
 if [ -z ${UNIQUE_ID} ]; then UNIQUE_ID=",\"unique_id\":\"${MQTT_STATE_TOPIC}-${NAME}\""; fi
-
-JSON_CONF="{\"name\":\"$NAME\",\"state_topic\":\"$STATE_TOPIC\"$UNIQUE_ID$DEVICE_CLASS$UNIT_OF_MEASUREMENT}";
-
 if [ -z ${COMPONENT} ]; then COMPONENT="sensor"; fi
 
+if [ -z ${UNIT_OF_MEASUREMENT} ] && [ ${STATE_CLASS} ]; then
+    echo "Error: STATE_CLASS requires UNIT_OF_MEASUREMENT (-u) to be defined."
+    exit 6
+fi
+
+JSON_CONF="{\"name\":\"$NAME\",\"state_topic\":\"$STATE_TOPIC\"$UNIQUE_ID$DEVICE_CLASS$UNIT_OF_MEASUREMENT$STATE_CLASS}";
 CONFIG_TOPIC="$MQTT_CONF_TOPIC/$COMPONENT/$NAME/config"
 
 if [ -z "$NODISCOVERY" ]; then
@@ -53,6 +58,7 @@ if [ -z "$NODISCOVERY" ]; then
        echo "State topic: $STATE_TOPIC"
        echo "State: $STATE"
        echo "Device class: $DEVICE_CLASS"
+       echo "State class: $STATE_CLASS"
        echo "Publish discovery topic command:"
        echo $MQTT_CMD -t "$CONFIG_TOPIC" -m \"$JSON_CONF\" -r
     fi
