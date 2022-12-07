@@ -5,9 +5,9 @@ A simple bash script to create a mqtt sensor in Home Assistant using mqtt discov
 
 # How to use (simple mode)
 
-1. Create a sensor named "foo" with the state "bar"
+1. Create an entity named "sensor.foo" with the state "bar" in Home Assistant
 ```sh
-   sh ./mqtt_sensor.sh -n "foo" -s "bar"
+   sh ./mqtt_sensor.sh -n foo -s bar
 ```
 
 2. Create two sensors which contain the result of last backup operation
@@ -21,24 +21,24 @@ else
     status=FAIL
     backup_message=$cmd_output
 fi
-sh ./mqtt_sensor.sh -n "last_backup_result" -s "$status"
-sh ./mqtt_sensor.sh -n "last_backup_message" -s "$backup_message"
+sh ./mqtt_sensor.sh -n last_backup_result -s $status
+sh ./mqtt_sensor.sh -n last_backup_message -s $backup_message
 ```
- This command will create two sensors named `last_backup_result` and `las_backup_message` in Home Assistant. 
+This command will create two entities named `sensor.last_backup_result` and `sensor.last_backup_message` in Home Assistant. 
 
 3. Create a timestamp sensor which contains the last backup date:
 ```sh
 # use your timezone here
 ts=$(date +"%Y-%m-%dT%T+03:00")
 # specify device_class="timestamp" with -d option
-sh ./mqtt_sensor.sh -n "last_backup_date" -s "$ts" -d "timestamp"
+sh ./mqtt_sensor.sh -n last_backup_date -s $ts -d timestamp
 
 ```
 
 # How does it work
 
 The discovery mechanism requires two MQTT topics to exist in your MQTT broker for each sensor:
-1. `config_topic` - this is a json definition of your sensor: the name, unit of measurement, where to get state (state_topic) and so on. Config_topic location and payload should obey the conventions impoded by MQTT discovery feature. The payload of this topic is JSON object.
+1. `config_topic` - this is a configuration of your sensor: the name, unit of measurement, where to get state (state_topic) and so on. `config_topic` location and payload should obey the conventions imposed by MQTT discovery feature. The payload of this topic is JSON object.
 2. `state_topic` - MQTT topic where HA should get the state of the sensor. This can be arbitrary path, by default all state topics created by mqtt-sensor are published under `mqtt-sensor/{sensor_name}` topic. This can be alrered with `-t` parameter.  
 
 The mqtt-sensor creates and publish both config_topic and state_topic every on each run using either command line parameters (simple mode), or json file (JSON mode). By default config_topic is updated every time the sensor state is updated. When `-k` option is set, only sensor state is published. In theory, this can sligtly improve performance, but you'll unlikely notice the difference. Note that config_topic should exist for every sensor in order to work propely in HA.
