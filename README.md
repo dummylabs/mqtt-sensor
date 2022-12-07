@@ -5,9 +5,9 @@ A simple bash script to create a mqtt sensor in Home Assistant using mqtt discov
 
 # How to use (simple mode)
 
-1. Create an entity named "sensor.foo" with the state "bar" in Home Assistant
+1. Create an entity named `sensor.foo` with the state "bar" in Home Assistant
 ```sh
-   sh ./mqtt_sensor.sh -n foo -s bar
+sh ./mqtt_sensor.sh -n foo -s bar
 ```
 
 2. Create two sensors which contain the result of last backup operation
